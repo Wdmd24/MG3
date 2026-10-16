@@ -9,15 +9,18 @@ public class TimerText : MonoBehaviour
     [SerializeField] private TMP_Text _timerDisplay;
     [SerializeField] private Timer _gameTimer;
 
+    private int a=0;
+
     // STEP 8 -----------------------------------------------------------------
     // This method runs ONCE, when the GAME BEGINS. It is called by Unity.
     // Uncomment this method and fill in the method name.
     //
-    //private void ???()
-    //{
+    private void Start()
+    {
+        _gameTimer.BeginTimer(_maxGameTime);
             // Inside this method, CALL the BeginTimer method on _gameTimer.
             // Pass in _maxGameTime as the ARGUMENT.
-    //}
+    }
     // STEP 8 -----------------------------------------------------------------
 
     // ------------------------------------------------------------------------
@@ -34,6 +37,11 @@ public class TimerText : MonoBehaviour
 
         // STEP 9 -------------------------------------------------------------
 
+        if (_gameTimer.IsFinished() && a==0)
+        {
+            GameOver();
+            a++;
+        }
         _timerDisplay.text = _gameTimer.GetTimeLeft().ToString();
     }
     
